@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Header } from "./Header";
 import { FunctionList } from "./FunctionList";
 import { FunctionScreen } from "./FunctionScreen";
 import { useCallback } from "react";
@@ -11,6 +12,9 @@ export const InitialScreen = () => {
 
     return (
         <div className="container w-screen">
+            <div className="w-full">
+                <Header />
+            </div>
             <div className="flex layout_screen">
                 <FunctionList open={openMenu} handleClick={handleMenuOpen} />
                 <FunctionScreen open={openMenu} />
