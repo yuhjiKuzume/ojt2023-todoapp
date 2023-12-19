@@ -1,0 +1,1 @@
+python3 manage.py custom_createsuperuser --username admin --password Mine079
