@@ -11,6 +11,7 @@ RUN npx tailwindcss init
 
 COPY --chown=node:node . /home/node/frontend
 
+RUN npm install
 RUN npm run build
 
 ##############

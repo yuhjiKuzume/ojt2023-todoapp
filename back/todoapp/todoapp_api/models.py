@@ -14,10 +14,3 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
-
-# class User(models.Model):
-#     email = models.EmailField(verbose_name='メールアドレス', max_length=255, unique=True)
-#     name = models.CharField(verbose_name='ユーザ名', max_length=32)
-    
-
-#     USERNAME_FIELD = 'email'

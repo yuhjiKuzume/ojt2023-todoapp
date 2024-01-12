@@ -30,13 +30,10 @@ const reducerFunc = (tasks: TaskData[], action: ReducerAction) => {
             return [...action.payload];
         case "CREATE_TASK":
             return [...tasks, action.payload];
-        case "DELETE_TASK":
-            console.log(action);
-            const newtask = tasks.filter((task) => task.id !== action.payload.id);
-            console.log(newtask);
-            return newtask;
         case "EDIT_TASK":
             return tasks.map((task) => (task.id === action.payload.id ? action.payload : task));
+        case "FILTER_TASK":
+            return [...action.payload];
         // 更新前のstateをそのまま返す。
         default:
             return tasks;

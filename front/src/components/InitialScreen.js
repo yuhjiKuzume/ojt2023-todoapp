@@ -11,7 +11,7 @@ export const InitialScreen = () => {
     }, [openMenu]);
 
     return (
-        <div className="container w-screen">
+        <div>
             <div className="w-full">
                 <Header />
             </div>

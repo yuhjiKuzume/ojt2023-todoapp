@@ -16,11 +16,11 @@ export const FunctionList = React.memo(({ open, handleClick }) => {
                         </button>
                         <button className="flex justify-items-center mx-auto items-center px-4 py-3 w-3/4 bg-yellow-300 font-bold rounded-md hover:bg-yellow-500 transition-all duration-300">
                             <SlCalender className="mr-3" />
-                            <span>カレンダー</span>
+                            <span>未実装</span>
                         </button>
                         <button className="flex justify-items-center mx-auto items-center px-4 py-3 w-3/4 bg-green-300 font-bold rounded-md hover:bg-green-500 transition-all duration-300">
                             <IoIosBuild className="mr-3" />
-                            <span>追加機能</span>
+                            <span>未実装</span>
                         </button>
                     </div>
                     <div className="flex h-10 border-t border-gray-700 justify-end">

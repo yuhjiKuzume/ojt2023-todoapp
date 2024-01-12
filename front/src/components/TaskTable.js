@@ -8,29 +8,35 @@ export const TaskTable = ({ handleClick, setEdittask }) => {
     const { tasks, dispatch } = useContext(TaskDataContext);
 
     useEffect(() => {
-        // axios.get('https://todoapp-ojt2023.net/tasks/')
-        axios.get("http://localhost:8000/api/tasks/").then((res) => {
+        // axios
+        //     .get("http://localhost:8000/api/tasks/")
+        axios.get("https://todoapp-ojt2023.net/api/tasks/").then((res) => {
             dispatch({ type: "GET_TASK", payload: res.data });
         });
     }, []);
 
-    const deleteTask = () => {
+    const deleteTask = async () => {
         let checkedTasks = document.querySelectorAll("input[name=delete-select]:checked");
 
         if (checkedTasks.length === 0) {
             alert("削除するタスクを選択してください。");
         } else {
             for (let delete_data of checkedTasks) {
-                axios.delete(`http://localhost:8000/api/tasks/${delete_data.value}`).then((res) => {
-                    dispatch({ type: "DELETE_TASK", payload: res.data });
-                });
+                const deleteres = await axios.delete(
+                    `https://todoapp-ojt2023.net/api/tasks/${delete_data.value}`
+                );
+                // axios.getを呼び出す
+                if (deleteres) {
+                    const getres = await axios.get("https://todoapp-ojt2023.net/api/tasks/");
+                    dispatch({ type: "GET_TASK", payload: getres.data });
+                }
             }
         }
     };
 
     return (
-        <div className="flex justify-center">
-            <div class="relative overflow-y-auto shadow-md sm:rounded-lg h-full w-5/6">
+        <div className="flex justify-center w-2/3">
+            <div class="relative overflow-y-auto shadow-md sm:rounded-lg h-full w-full">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead
                         class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400"
@@ -108,7 +114,7 @@ export const TaskTable = ({ handleClick, setEdittask }) => {
                     </tbody>
                 </table>
             </div>
-            <div className="flex flex-col space-y-3">
+            <div className="flex space-y-3">
                 <button
                     onClick={deleteTask}
                     className="flex items-center bg-orange-300 ml-4 px-3 rounded-xl text-lg h-[40px] w-[84px]"

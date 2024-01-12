@@ -6,21 +6,22 @@ import axios from "axios";
 import { TaskDataContext } from "../contexts/TaskDataContext.tsx";
 
 export const CreateTaskScreen = ({ handleClick }) => {
-    const [task, setTask] = useState({ title: "", content: "", limit: "" });
+    const [task, setTask] = useState({ title: "", content: "", limit: null });
     const { dispatch } = useContext(TaskDataContext);
 
     const createTask = () => {
         const data = {
             title: task.title,
             content: task.content,
-            limit: task.limit === "" ? null : new Date(task.limit).toLocaleDateString("sv-SE"),
+            limit: task.limit === null ? null : new Date(task.limit).toLocaleDateString("sv-SE"),
         };
         if (data.title === "") {
             alert("タスク名を入れてください");
         } else {
-            // axios.post("https://todoapp-ojt2023.net/tasks/");
             axios
-                .post("http://localhost:8000/api/tasks/", data)
+                .post("https://todoapp-ojt2023.net/api/tasks/", data)
+                // axios
+                //     .post("http://localhost:8000/api/tasks/", data)
                 .then((res) => {
                     dispatch({ type: "CREATE_TASK", payload: res.data });
                     handleClick();

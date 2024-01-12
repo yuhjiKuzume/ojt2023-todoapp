@@ -13,15 +13,16 @@ export const EditTaskScreen = ({ editTask, handleClick }) => {
         const data = {
             title: task.title,
             content: task.content,
-            limit: task.limit === "" ? null : new Date(task.limit).toLocaleDateString("sv-SE"),
+            limit: task.limit === null ? null : new Date(task.limit).toLocaleDateString("sv-SE"),
         };
 
         if (data.title === "") {
             alert("タスク名を入れてください");
         } else {
-            // axios.post("https://todoapp-ojt2023.net/tasks/");
             axios
-                .put(`http://localhost:8000/api/tasks/${editTask.id}/`, data)
+                .put(`https://todoapp-ojt2023.net/api/tasks/${editTask.id}/`, data)
+                // axios
+                //     .put(`http://localhost:8000/api/tasks/${editTask.id}/`, data)
                 .then((res) => {
                     dispatch({ type: "EDIT_TASK", payload: res.data });
                     handleClick();
@@ -60,7 +61,7 @@ export const EditTaskScreen = ({ editTask, handleClick }) => {
                     <div className="text-left">
                         <p>期限</p>
                         <InputDate
-                            value={task.limit === null ? "" : task.limit}
+                            value={task.limit === null ? null : task.limit}
                             handleChange={(date) => setTask({ ...task, limit: date })}
                         />
                     </div>

@@ -27,7 +27,7 @@ export const FunctionScreen = ({ open }) => {
                 <SearchTask />
                 <CreateTaskButton handleClick={handleTaskMenuOpen} />
             </div>
-            <div className="flex justify-center mx-auto mt-3 h-[73%] w-full">
+            <div className="flex justify-center mx-2 mt-3 h-[73%] w-full">
                 <TaskTable handleClick={handleEditMenuOpen} setEdittask={setEditTask} />
             </div>
             {openCreateTaskMenu && <CreateTaskScreen handleClick={handleTaskMenuOpen} />}
