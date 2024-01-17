@@ -1,12 +1,12 @@
 import "./App.css";
-import { InitialScreen } from "./components/InitialScreen";
+import { MainScreen } from "./components/MainScreen";
 import { TaskDataContextProvider } from "./contexts/TaskDataContext.tsx";
 
 function App() {
     return (
         <div>
             <TaskDataContextProvider>
-                <InitialScreen />
+                <MainScreen />
             </TaskDataContextProvider>
         </div>
     );

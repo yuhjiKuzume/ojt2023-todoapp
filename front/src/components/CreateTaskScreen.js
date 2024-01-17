@@ -4,6 +4,7 @@ import { InputDate } from "./parts/InputDate.js";
 import { useState } from "react";
 import axios from "axios";
 import { TaskDataContext } from "../contexts/TaskDataContext.tsx";
+import { NoTasknameError } from "./FunctionError.js";
 
 export const CreateTaskScreen = ({ handleClick }) => {
     const [task, setTask] = useState({ title: "", content: "", limit: null });
@@ -16,7 +17,7 @@ export const CreateTaskScreen = ({ handleClick }) => {
             limit: task.limit === null ? null : new Date(task.limit).toLocaleDateString("sv-SE"),
         };
         if (data.title === "") {
-            alert("タスク名を入れてください");
+            NoTasknameError();
         } else {
             axios
                 .post("https://todoapp-ojt2023.net/api/tasks/", data)

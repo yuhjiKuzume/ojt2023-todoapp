@@ -4,7 +4,7 @@ import { FunctionList } from "./FunctionList";
 import { FunctionScreen } from "./FunctionScreen";
 import { useCallback } from "react";
 
-export const InitialScreen = () => {
+export const MainScreen = () => {
     const [openMenu, setOpenMenu] = useState(true);
     const handleMenuOpen = useCallback(() => {
         setOpenMenu(!openMenu);

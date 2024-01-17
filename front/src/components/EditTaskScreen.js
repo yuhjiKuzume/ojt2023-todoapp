@@ -4,6 +4,7 @@ import { InputDate } from "./parts/InputDate.js";
 import { useState } from "react";
 import axios from "axios";
 import { TaskDataContext } from "../contexts/TaskDataContext.tsx";
+import { NoTasknameError } from "./FunctionError.js";
 
 export const EditTaskScreen = ({ editTask, handleClick }) => {
     const [task, setTask] = useState(editTask);
@@ -17,7 +18,7 @@ export const EditTaskScreen = ({ editTask, handleClick }) => {
         };
 
         if (data.title === "") {
-            alert("タスク名を入れてください");
+            NoTasknameError();
         } else {
             axios
                 .put(`https://todoapp-ojt2023.net/api/tasks/${editTask.id}/`, data)

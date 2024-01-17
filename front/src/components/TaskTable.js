@@ -3,6 +3,7 @@ import axios from "axios";
 import { TaskDataContext } from "../contexts/TaskDataContext.tsx";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { FaPenToSquare } from "react-icons/fa6";
+import { NoSelectError } from "./FunctionError.js";
 
 export const TaskTable = ({ handleClick, setEdittask }) => {
     const { tasks, dispatch } = useContext(TaskDataContext);
@@ -19,7 +20,7 @@ export const TaskTable = ({ handleClick, setEdittask }) => {
         let checkedTasks = document.querySelectorAll("input[name=delete-select]:checked");
 
         if (checkedTasks.length === 0) {
-            alert("削除するタスクを選択してください。");
+            NoSelectError();
         } else {
             for (let delete_data of checkedTasks) {
                 const deleteres = await axios.delete(
@@ -35,7 +36,7 @@ export const TaskTable = ({ handleClick, setEdittask }) => {
     };
 
     return (
-        <div className="flex justify-center w-2/3">
+        <div className="flex justify-center w-2/3 s">
             <div class="relative overflow-y-auto shadow-md sm:rounded-lg h-full w-full">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead
